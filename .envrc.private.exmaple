@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export TF_VAR_cloud_sql_username="username"
+export TF_VAR_cloud_sql_password="strongpassword"
