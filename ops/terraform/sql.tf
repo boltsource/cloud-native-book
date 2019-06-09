@@ -11,6 +11,7 @@ resource "google_project_service" "sqlcomponent" {
   disable_on_destroy = true
   disable_dependent_services = true
 }
+
 resource "google_project_service" "sqladmin" {
   service = "sqladmin.googleapis.com"
 
@@ -26,13 +27,13 @@ resource "google_compute_global_address" "private_ip_address" {
   purpose       = "VPC_PEERING"
   address_type = "INTERNAL"
   prefix_length = 16
-  network       = "default"
+  network       = "${google_container_cluster.kubernetes.network}"
 }
 
 resource "google_service_networking_connection" "private_vpc_connection" {
   provider = "google-beta"
 
-  network       = "default"
+  network       = "${google_container_cluster.kubernetes.network}"
   service       = "servicenetworking.googleapis.com"
   reserved_peering_ranges = ["${google_compute_global_address.private_ip_address.name}"]
 
