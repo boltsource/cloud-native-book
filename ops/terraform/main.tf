@@ -16,3 +16,5 @@ provider "google-beta" {
   region      = "us-central1"
   project     = "${var.project_id}"
 }
+
+provider "kubernetes" {}
