@@ -31,8 +31,4 @@ resource "google_container_cluster" "kubernetes" {
 
     tags = ["gke-cluster"]
   }
-
-  provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials ${google_container_cluster.kubernetes.name}"
-  }
 }
