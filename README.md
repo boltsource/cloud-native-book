@@ -23,3 +23,5 @@ This book is broken into chapters, each with an accompanying blog post.
 [Chapter 5 - Continuous Integration and Deployment with Google Cloud Builds (COMING SOON)]()
 
 [Chapter 6 - Production readiness with Stackdriver Tracing, Metrics, and Error Tracking (COMING SOON)]()
+
+*Do you wish your engineering team knew how to do this kind of thing?  BoltSource is available to help your team and company push the envelope and deliver software products that are better, faster, and stronger with our team of Silicon Valley Veterans and Open Source Savants.  [Book a free exploration call today](https://calendly.com/boltsource-andrew/exploration)*
