@@ -1,4 +1,4 @@
-# Setting up Infrastructure
+# Setting up the Project
 
 Login to GCloud
 ```bash
@@ -10,9 +10,14 @@ Set the compute zone
 gcloud config set compute/zone us-central1-a
 ```
 
+Set environment variable for project id
+```bash
+PROJECT_ID=tf-gcp-gql
+```
+
 Create a project
 ```bash
-gcloud projects create tf-gcp-gql
+gcloud projects create $PROJECT_ID
 ```
 
 Get existing organizational billing accounts
@@ -22,17 +27,22 @@ gcloud beta billing accounts list
 
 Link an existing billing account to the project
 ```bash
-gcloud beta billing projects link tf-gcp-gql --billing-account=<YOUR BILLING ACCOUNT ID>"
+gcloud beta billing projects link $PROJECT_ID --billing-account=<YOUR BILLING ACCOUNT ID>
 ```
 
 Set the active project
 ```bash
-gcloud config set project tf-gcp-gql
+gcloud config set project $PROJECT_ID
 ```
 
 Enabled the Cloud Resource Manager API for the project
 ```bash
 gcloud services enable cloudresourcemanager.googleapis.com 
+```
+
+Configure `docker` credentials to use GCR
+```
+gcloud auth configure-docker
 ```
 
 Create the terraform service account
@@ -44,22 +54,23 @@ gcloud beta iam service-accounts create sa-terraform \
 
 Grant the service account ownership roles (for the sake of brevity)
 ```bash
-gcloud projects add-iam-policy-binding tf-gcp-gql \
---member serviceAccount:sa-terraform@tf-gcp-gql.iam.gserviceaccount.com \
---role roles/owner
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member serviceAccount:sa-terraform@$PROJECT_ID.iam.gserviceaccount.com \
+    --role roles/owner
 ```
 
 
 Create a local key for the service account
 ```bash
-gcloud iam service-accounts keys create ~/.terraform/service-account.json --iam-account sa-terraform@tf-gcp-gql.iam.gserviceaccount.com
+gcloud iam service-accounts keys create ~/.terraform/service-account.json \
+    --iam-account sa-terraform@$PROJECT_ID.iam.gserviceaccount.com
 ```
 
 **Temporary** Visit the UI to enable billing on Google Cloud Storage page
 
 Create a storage bucket to store terraform state
 ```bash
-gsutil mb -p tf-gcp-gql gs://tf-gcp-gql-tf-state
+gsutil mb -p $PROJECT_ID gs://$PROJECT_ID-tf-state
 ```
 
 Setup a basic terraform file in `ops/terraform/main.tf`
@@ -76,9 +87,9 @@ Apply the changes to create the GKE cluster
 terraform apply ops/terraform
 ```
 
-Configure `kubectl`
+Configure `kubectl` credentials to use GKE
 ```bash
-gcloud container clusters get-credentials main-cluster-v2
+gcloud container clusters get-credentials main-cluster
 ```
 
 
