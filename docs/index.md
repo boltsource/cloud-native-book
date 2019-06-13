@@ -1,5 +1,5 @@
 # Cloud Native Book
-In this book, we will go through building a basic real-time cloud-native application, including a mobile app, using a cutting edge stack including:
+In this book, we will walk you through building a Real-Time Cloud-Native application, including a mobile app, using a cutting edge stack including:
 
 - [Terraform](https://www.terraform.io/)
 - [Kubernetes via Google Kubernetes Engine](https://kubernetes.io/)
