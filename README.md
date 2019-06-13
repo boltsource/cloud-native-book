@@ -18,8 +18,8 @@ This book is broken into chapters, each with an accompanying blog post.
 
 [Chapter 3 - Designing the app and building out the GraphQL API(COMING SOON)]()
 
-[Chapter 4 - Building out the mobile app with Expo]()
+[Chapter 4 - Building out the mobile app with Expo (COMING SOON)]()
 
-[Chapter 5 - Continuous Integration and Deployment with Google Cloud Builds]()
+[Chapter 5 - Continuous Integration and Deployment with Google Cloud Builds (COMING SOON)]()
 
-[Chapter 6 - Production readiness with Stackdriver Tracing, Metrics, and Error Tracking]()
+[Chapter 6 - Production readiness with Stackdriver Tracing, Metrics, and Error Tracking (COMING SOON)]()
