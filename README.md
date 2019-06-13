@@ -12,7 +12,7 @@ gcloud config set compute/zone us-central1-a
 
 Set environment variable for project id
 ```bash
-PROJECT_ID=tf-gcp-gql
+PROJECT_ID=<YOUR_GLOBALLY_UNIQUE_PROJECT_NAME>
 ```
 
 Create a project
@@ -34,6 +34,8 @@ Set the active project
 ```bash
 gcloud config set project $PROJECT_ID
 ```
+
+# Deploying Infrastructure with Terraform
 
 Enabled the Cloud Resource Manager API for the project
 ```bash
@@ -59,21 +61,18 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
     --role roles/owner
 ```
 
-
-Create a local key for the service account
+Create a local key for the service account that the terraform CLI can use
 ```bash
 gcloud iam service-accounts keys create ~/.terraform/service-account.json \
     --iam-account sa-terraform@$PROJECT_ID.iam.gserviceaccount.com
 ```
-
-**Temporary** Visit the UI to enable billing on Google Cloud Storage page
 
 Create a storage bucket to store terraform state
 ```bash
 gsutil mb -p $PROJECT_ID gs://$PROJECT_ID-tf-state
 ```
 
-Setup a basic terraform file in `ops/terraform/main.tf`
+Setup a main terraform file with providers, variables, and a backend in `ops/terraform/main.tf`
 
 Init the project
 ```bash
@@ -92,7 +91,6 @@ Configure `kubectl` credentials to use GKE
 gcloud container clusters get-credentials main-cluster
 ```
 
-
 Add SQL (Postgres) in `ops/terraform/sql`
 
 Apply the changes to create the Postgres instance
@@ -101,7 +99,6 @@ terraform apply ops/terraform
 ```
 
 Test connectivity between GKE and Cloud SQL
-
 ```bash
 
 ```
@@ -114,9 +111,7 @@ terraform apply ops/terraform
 ```
 
 
-# Enable Google Cloud Registry
+Test connectivity between GKE and Redis
 ```bash
-gcloud auth configure-docker
-```
 
-# Creating the API
+```
