@@ -12,7 +12,7 @@ In this book, we will go through building a basic real-time cloud-native applica
 This book is broken into chapters, each with an accompanying blog post.
 
 ### Chapters
-[Chapter 1 - Deploying Infrastructure with Terraform](./docs/1.md)
+[Chapter 1 - Deploying Infrastructure with Terraform](./1.md)
 
 [Chapter 2 - Building and Deploying a skeleton GraphQL API (COMING SOON)]()
 
